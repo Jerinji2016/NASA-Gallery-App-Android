@@ -1,8 +1,9 @@
-package com.jerin.nasagalleryapp
+package com.jerin.nasagalleryapp.utils
 
 import android.content.Context
 import android.util.Log
 import androidx.annotation.WorkerThread
+import com.jerin.nasagalleryapp.R
 import com.jerin.nasagalleryapp.modal.ImageData
 import org.json.JSONArray
 import java.io.BufferedReader
