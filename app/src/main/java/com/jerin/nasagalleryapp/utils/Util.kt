@@ -31,7 +31,6 @@ object Util {
                 }
             }
             val jsonEncodedData = writer.toString()
-
             val jsonList = JSONArray(jsonEncodedData)
 
             val images = ArrayList<ImageData>()
