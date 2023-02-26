@@ -2,6 +2,7 @@ package com.jerin.nasagalleryapp.modal
 
 import org.json.JSONObject
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 data class ImageData(val json: JSONObject) {
     val title: String
@@ -41,6 +42,12 @@ data class ImageData(val json: JSONObject) {
     val date: LocalDate
         get() {
             return LocalDate.parse(dateString)
+        }
+
+    val formattedDate: String
+        get() {
+            return DateTimeFormatter.ofPattern("dd MMM yyyy")
+                .format(date)
         }
 
     override fun hashCode(): Int {

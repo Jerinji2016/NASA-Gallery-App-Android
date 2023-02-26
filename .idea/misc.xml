@@ -4,8 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/image_error.xml" value="0.2025" />
+        <entry key="app/src/main/res/drawable/shader.xml" value="0.188" />
         <entry key="app/src/main/res/layout-v21/activity_image_grid.xml" value="0.190625" />
         <entry key="app/src/main/res/layout-v28/activity_image_grid.xml" value="0.19479166666666667" />
+        <entry key="app/src/main/res/layout/activity_image_details.xml" value="0.2642547607421875" />
         <entry key="app/src/main/res/layout/activity_image_grid.xml" value="0.24776509602864583" />
         <entry key="app/src/main/res/layout/image_card.xml" value="0.4079295154185022" />
       </map>

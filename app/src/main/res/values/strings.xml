@@ -2,4 +2,7 @@
     <string name="app_name">NASA Gallery App</string>
     <string name="nasa_gallery_app">NASA Gallery App</string>
     <string name="image_from_nasa">Image from NASA</string>
+    <string name="know_more">Know More</string>
+    <string name="sample_title">Sample Title</string>
+    <string name="sample_date">1 JAN 2020</string>
 </resources>
