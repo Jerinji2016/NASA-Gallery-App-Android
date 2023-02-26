@@ -1,12 +1,15 @@
 package com.jerin.nasagalleryapp.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
-import android.widget.GridView
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.jerin.nasagalleryapp.R
 import com.jerin.nasagalleryapp.providers.DataProvider
-import com.jerin.nasagalleryapp.ui.adapters.ImageGridViewAdapter
+import com.jerin.nasagalleryapp.ui.adapters.RecyclerViewAdapter
 import com.jerin.nasagalleryapp.utils.Util
 
 class ImageGridActivity : AppCompatActivity() {
@@ -14,6 +17,7 @@ class ImageGridActivity : AppCompatActivity() {
         private const val TAG = "ImageGridActivity"
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image_grid)
@@ -24,10 +28,11 @@ class ImageGridActivity : AppCompatActivity() {
             loadImageData(applicationContext)
 
             val size = Util.getImageSize(applicationContext)
-            val gridView = findViewById<GridView>(R.id.image_grid_view)
-            gridView.adapter = ImageGridViewAdapter(applicationContext, size, images)
-        }
+            val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
+            val recyclerViewAdapter = RecyclerViewAdapter(applicationContext, size, images)
 
-        Log.d(TAG, "onCreate: complete")
+            recyclerView.layoutManager = GridLayoutManager(this@ImageGridActivity, 3)
+            recyclerView.adapter = recyclerViewAdapter
+        }
     }
 }

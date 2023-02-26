@@ -1,11 +1,12 @@
 package com.jerin.nasagalleryapp.modal
 
 import org.json.JSONObject
+import java.time.LocalDate
 
 data class ImageData(val json: JSONObject) {
     val title: String
         get() {
-            return json.getString("name")
+            return json.getString("title")
         }
 
     val explanation: String
@@ -32,12 +33,28 @@ data class ImageData(val json: JSONObject) {
             }
         }
 
-    val dateString: String
+    private val dateString: String
         get() {
             return json.getString("date")
         }
 
-//    DateTime get date => DateTime.parse(_dateString);
-//
-//    String get formattedDate => DateFormat("dd MMMM yyyy").format(date);
+    val date: LocalDate
+        get() {
+            return LocalDate.parse(dateString)
+        }
+
+    override fun hashCode(): Int {
+        return json.toString().hashCode()
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as ImageData
+
+        if (json != other.json) return false
+
+        return true
+    }
 }

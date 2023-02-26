@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Build
 import android.util.Log
 import android.view.WindowManager
-import androidx.annotation.WorkerThread
 import com.jerin.nasagalleryapp.R
 import com.jerin.nasagalleryapp.modal.ImageData
 import org.json.JSONArray
@@ -47,13 +46,15 @@ object Util {
         }
     }
 
-    fun getImageSize(context: Context) : Int {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+    fun getImageSize(context: Context): Int {
+        val windowWidth = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
-            windowManager.currentWindowMetrics.bounds.right / 3
+            windowManager.currentWindowMetrics.bounds.right
         } else {
             val displayMetrics = context.resources.displayMetrics
-            displayMetrics.widthPixels / 3
+            displayMetrics.widthPixels
         }
+
+        return (windowWidth - 10) / 3
     }
 }

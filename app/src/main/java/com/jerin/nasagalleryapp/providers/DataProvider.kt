@@ -5,6 +5,7 @@ import android.util.Log
 import com.jerin.nasagalleryapp.modal.ImageData
 import com.jerin.nasagalleryapp.utils.Util
 
+//  Simple single instance provider class
 class DataProvider private constructor() {
     companion object {
         private const val TAG = "DataProvider"
@@ -26,7 +27,12 @@ class DataProvider private constructor() {
         try {
             images.apply {
                 clear()
-                addAll(Util.loadData(context))
+                val images = Util.loadData(context).apply {
+                    sortByDescending {
+                        it.date
+                    }
+                }
+                addAll(images)
             }
         } catch (e: Exception) {
             Log.e(TAG, "loadImageData: ", e)
