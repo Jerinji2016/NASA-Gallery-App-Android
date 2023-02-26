@@ -29,7 +29,7 @@ class ImageGridActivity : AppCompatActivity() {
 
             val size = Util.getImageSize(applicationContext)
             val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
-            val recyclerViewAdapter = RecyclerViewAdapter(applicationContext, size, images)
+            val recyclerViewAdapter = RecyclerViewAdapter(this@ImageGridActivity, size, images)
 
             recyclerView.layoutManager = GridLayoutManager(this@ImageGridActivity, 3)
             recyclerView.adapter = recyclerViewAdapter
