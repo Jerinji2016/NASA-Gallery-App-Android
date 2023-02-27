@@ -1,7 +1,7 @@
 package com.jerin.nasagalleryapp.ui.adapters
 
-import android.content.Context
-import android.util.Log
+import android.app.Activity
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,23 +12,23 @@ import com.facebook.shimmer.Shimmer
 import com.facebook.shimmer.ShimmerDrawable
 import com.jerin.nasagalleryapp.R
 import com.jerin.nasagalleryapp.modal.ImageData
+import com.jerin.nasagalleryapp.ui.ImageDetailsActivity
 
 
 class RecyclerViewAdapter(
-    private val context: Context,
+    private val activity: Activity,
     private val size: Int,
     private val images: ArrayList<ImageData>
-) :
-    RecyclerView.Adapter<RecyclerViewAdapter.RecyclerViewHolder>() {
+) : RecyclerView.Adapter<RecyclerViewAdapter.RecyclerViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewHolder {
-        val view: View = LayoutInflater.from(context).inflate(R.layout.image_card, parent, false)
+        val view: View = LayoutInflater.from(activity).inflate(R.layout.image_card, parent, false)
         return RecyclerViewHolder(view, size)
     }
 
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
         val image: ImageData = images[position]
-        holder.bind(image)
+        holder.bind(position, image)
     }
 
     override fun getItemCount(): Int {
@@ -43,7 +43,7 @@ class RecyclerViewAdapter(
             image.layoutParams.height = size
         }
 
-        fun bind(image: ImageData) {
+        fun bind(index: Int, image: ImageData) {
             val shimmer = Shimmer.AlphaHighlightBuilder()
                 .setDuration(1800)
                 .setBaseAlpha(0.7f)
@@ -58,7 +58,7 @@ class RecyclerViewAdapter(
                 setShimmer(shimmer)
             }
 
-            Glide.with(context)
+            Glide.with(activity)
                 .load(image.url)
                 .placeholder(shimmerDrawable)
                 .error(R.drawable.image_error)
@@ -66,7 +66,11 @@ class RecyclerViewAdapter(
                 .into(this.image)
 
             itemView.setOnClickListener {
-                Log.d("TAG", "bind: clicked ${image.title}")
+                Intent(activity, ImageDetailsActivity::class.java).apply {
+                    putExtra("index", index)
+                    putExtra("hash", image.hashCode())
+                    activity.startActivity(this)
+                }
             }
         }
     }

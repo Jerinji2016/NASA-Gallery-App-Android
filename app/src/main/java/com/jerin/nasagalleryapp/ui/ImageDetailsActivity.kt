@@ -1,20 +1,19 @@
 package com.jerin.nasagalleryapp.ui
 
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.google.android.material.button.MaterialButton
 import com.jerin.nasagalleryapp.R
 import com.jerin.nasagalleryapp.modal.ImageData
 import com.jerin.nasagalleryapp.providers.DataProvider
+import com.jerin.nasagalleryapp.ui.bottom_modal_sheet.BottomModalSheet
+import kotlin.properties.Delegates
 
-class ImageDetailsActivity : AppCompatActivity(), View.OnClickListener {
-    companion object {
-        private const val TAG = "ImageDetailsActivity"
-    }
+class ImageDetailsActivity : AppCompatActivity() {
+    private var index by Delegates.notNull<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,11 +21,14 @@ class ImageDetailsActivity : AppCompatActivity(), View.OnClickListener {
 
         supportActionBar?.hide()
 
+        index = intent.getIntExtra("index", 0)
+
         DataProvider.getInstance().apply {
-            loadImageData(applicationContext)
-            val image = images.first()
+            val image = images.elementAt(index)
             initUI(image)
         }
+
+        registerClickListeners()
     }
 
     private fun initUI(image: ImageData) {
@@ -45,13 +47,16 @@ class ImageDetailsActivity : AppCompatActivity(), View.OnClickListener {
             .into(imageView)
     }
 
-    override fun onClick(view: View?) {
-        Log.d(TAG, "onClick: ")
-        if (view == null) return
-
-        if (view.id == R.id.image_details_back_button) {
+    private fun registerClickListeners() {
+        val backButton = findViewById<MaterialButton>(R.id.image_details_back_button)
+        backButton.setOnClickListener {
             finish()
-            return
+        }
+
+        val showMoreButton = findViewById<MaterialButton>(R.id.show_more_button)
+        showMoreButton.setOnClickListener {
+            val bottomModalSheet = BottomModalSheet(index)
+            bottomModalSheet.show(supportFragmentManager, "BottomModalSheet")
         }
     }
 }

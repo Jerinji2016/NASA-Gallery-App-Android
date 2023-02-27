@@ -60,4 +60,7 @@ dependencies {
 
     //  Desugaring JDK
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
+
+    //  Bottom modal sheet
+    implementation 'com.google.android.material:material:1.9.0-alpha02'
 }
