@@ -8,7 +8,7 @@ on:
       - '*'
 
 jobs:
-  Gradle:
+  Build and Release:
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
