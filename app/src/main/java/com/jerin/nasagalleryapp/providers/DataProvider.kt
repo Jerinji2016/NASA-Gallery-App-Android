@@ -2,8 +2,10 @@ package com.jerin.nasagalleryapp.providers
 
 import android.content.Context
 import android.util.Log
+import androidx.annotation.VisibleForTesting
 import com.jerin.nasagalleryapp.modal.ImageData
 import com.jerin.nasagalleryapp.utils.Util
+import org.jetbrains.annotations.TestOnly
 
 //  Singleton class as Global Data Provider
 class DataProvider private constructor() {
@@ -24,6 +26,15 @@ class DataProvider private constructor() {
         private set
 
     fun loadImageData(context: Context) {
+        return loadImageDataAbstract(context)
+    }
+
+    @VisibleForTesting
+    fun loadImagesTest() {
+        loadImageDataAbstract()
+    }
+
+    private fun loadImageDataAbstract(context: Context? = null) {
         try {
             images.apply {
                 clear()
