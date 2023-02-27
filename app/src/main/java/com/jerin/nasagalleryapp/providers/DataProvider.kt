@@ -5,7 +5,7 @@ import android.util.Log
 import com.jerin.nasagalleryapp.modal.ImageData
 import com.jerin.nasagalleryapp.utils.Util
 
-//  Simple single instance provider class
+//  Singleton class as Global Data Provider
 class DataProvider private constructor() {
     companion object {
         private const val TAG = "DataProvider"

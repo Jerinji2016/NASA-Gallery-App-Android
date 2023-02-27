@@ -2,8 +2,6 @@ package com.jerin.nasagalleryapp.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,15 +22,13 @@ class ImageGridActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-        DataProvider.getInstance().apply {
-            loadImageData(applicationContext)
+        DataProvider.getInstance().loadImageData(applicationContext)
 
-            val size = Util.getImageSize(applicationContext)
-            val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
-            val recyclerViewAdapter = RecyclerViewAdapter(this@ImageGridActivity, size, images)
+        val size = Util.getImageSize(applicationContext)
+        val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
+        val recyclerViewAdapter = RecyclerViewAdapter(this, size)
+        recyclerView.layoutManager = GridLayoutManager(this, 3)
+        recyclerView.adapter = recyclerViewAdapter
 
-            recyclerView.layoutManager = GridLayoutManager(this@ImageGridActivity, 3)
-            recyclerView.adapter = recyclerViewAdapter
-        }
     }
 }
