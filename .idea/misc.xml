@@ -14,6 +14,8 @@
         <entry key="app/src/main/res/layout/activity_image_grid.xml" value="0.24776509602864583" />
         <entry key="app/src/main/res/layout/bottom_sheet_layout.xml" value="0.4384063720703125" />
         <entry key="app/src/main/res/layout/image_card.xml" value="0.4079295154185022" />
+        <entry key="app/src/main/res/layout/image_details_fragment.xml" value="0.17552083333333332" />
+        <entry key="app/src/main/res/layout/image_details_page.xml" value="0.375" />
       </map>
     </option>
   </component>
