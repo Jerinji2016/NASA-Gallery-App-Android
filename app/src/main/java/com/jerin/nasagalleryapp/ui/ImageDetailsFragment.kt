@@ -2,7 +2,7 @@ package com.jerin.nasagalleryapp.ui
 
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,10 +28,9 @@ class ImageDetailsFragment(private val index: Int) : Fragment() {
 
         view.findViewById<ViewPager2>(R.id.image_details_pager).apply {
             val pageViewAdapter = PageViewAdapter(this@ImageDetailsFragment)
-            Handler().postDelayed({
+            Handler(Looper.getMainLooper()).postDelayed({
                 setCurrentItem(index, false)
             }, 100)
-            setCurrentItem(index, false)
             adapter = pageViewAdapter
         }
 
