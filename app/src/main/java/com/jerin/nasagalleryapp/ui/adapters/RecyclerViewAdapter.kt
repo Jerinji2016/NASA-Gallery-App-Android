@@ -12,14 +12,16 @@ import com.facebook.shimmer.Shimmer
 import com.facebook.shimmer.ShimmerDrawable
 import com.jerin.nasagalleryapp.R
 import com.jerin.nasagalleryapp.modal.ImageData
+import com.jerin.nasagalleryapp.providers.DataProvider
 import com.jerin.nasagalleryapp.ui.ImageDetailsActivity
 
 
 class RecyclerViewAdapter(
     private val activity: Activity,
     private val size: Int,
-    private val images: ArrayList<ImageData>
 ) : RecyclerView.Adapter<RecyclerViewAdapter.RecyclerViewHolder>() {
+
+    private val images: ArrayList<ImageData> = DataProvider.getInstance().images
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewHolder {
         val view: View = LayoutInflater.from(activity).inflate(R.layout.image_card, parent, false)
