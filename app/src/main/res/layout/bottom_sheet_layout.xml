@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@android:color/transparent"
+    android:orientation="vertical"
+    android:paddingHorizontal="24dp"
+    tools:context=".ui.bottom_modal_sheet.BottomModalSheet"
+    android:paddingVertical="32dp">
+
+    <TextView
+        android:id="@+id/image_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/sample_title"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="16dp" />
+
+    <TextView
+        android:id="@+id/image_explanation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/lorem_ipsum" />
+
+    <LinearLayout
+        android:id="@+id/image_copyright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/copyright"
+            android:paddingEnd="4dp"
+            android:textStyle="bold"
+            android:paddingRight="4dp"
+            tools:ignore="RtlSymmetry" />
+
+        <TextView
+            android:id="@+id/image_copyright_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sample_copyright" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/image_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/date"
+            android:paddingEnd="4dp"
+            android:textStyle="bold"
+            android:paddingRight="4dp"
+            tools:ignore="RtlSymmetry" />
+
+        <TextView
+            android:id="@+id/image_date_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sample_date" />
+
+    </LinearLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

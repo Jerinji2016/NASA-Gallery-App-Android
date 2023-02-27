@@ -1,8 +1,10 @@
-package com.jerin.nasagalleryapp
+package com.jerin.nasagalleryapp.utils
 
 import android.content.Context
+import android.os.Build
 import android.util.Log
-import androidx.annotation.WorkerThread
+import android.view.WindowManager
+import com.jerin.nasagalleryapp.R
 import com.jerin.nasagalleryapp.modal.ImageData
 import org.json.JSONArray
 import java.io.BufferedReader
@@ -15,7 +17,6 @@ object Util {
     /**
      *  Fetches all the data for the app to run from [R.raw.data]
      */
-    @WorkerThread
     fun loadData(context: Context): ArrayList<ImageData> {
         try {
             val inputStream = context.resources.openRawResource(R.raw.data)
@@ -30,7 +31,6 @@ object Util {
                 }
             }
             val jsonEncodedData = writer.toString()
-
             val jsonList = JSONArray(jsonEncodedData)
 
             val images = ArrayList<ImageData>()
@@ -44,5 +44,17 @@ object Util {
             Log.e(TAG, "loadData: ", e)
             throw Exception("Failed to load data")
         }
+    }
+
+    fun getImageSize(context: Context): Int {
+        val windowWidth = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            val windowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+            windowManager.currentWindowMetrics.bounds.right
+        } else {
+            val displayMetrics = context.resources.displayMetrics
+            displayMetrics.widthPixels
+        }
+
+        return (windowWidth - 10) / 3
     }
 }
