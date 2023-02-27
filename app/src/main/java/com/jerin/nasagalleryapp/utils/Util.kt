@@ -17,9 +17,11 @@ object Util {
     /**
      *  Fetches all the data for the app to run from [R.raw.data]
      */
-    fun loadData(context: Context): ArrayList<ImageData> {
+    fun loadData(context: Context?): ArrayList<ImageData> {
         try {
-            val inputStream = context.resources.openRawResource(R.raw.data)
+            val inputStream = context?.resources?.openRawResource(R.raw.data)
+                ?: javaClass.classLoader?.getResourceAsStream("data.json")
+
             val reader = BufferedReader(InputStreamReader(inputStream, "utf-8"))
 
             val writer = StringWriter()
